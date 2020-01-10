@@ -32,9 +32,7 @@
 		location="/static/js/" />
 	<mvc:resources mapping="/static/img/**"
 		location="/static/img/" />
-	<mvc:resources mapping="/static/font/**"
-		location="/static/font/" />
-	<mvc:resources mapping="/static/js/lay/modules/**"
-		location="/static/js/lay/modules/" />
+	<mvc:resources mapping="/static/fonts/**"
+		location="/static/fonts/" />
 
 </beans>
