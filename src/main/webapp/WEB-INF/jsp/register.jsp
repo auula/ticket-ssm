@@ -51,68 +51,84 @@
 	<div class="container col-md-8" style="height: 560px;">
 		<div class="card">
 			<div class="card-header text-center header">
-				<h5>游客登录</h5>
+				<h5>游客注册</h5>
 			</div>
 			<div class="card-body mb-5 text-center ">
-
-				<form action="<%=basePath%>/user/login" method="post">
-					<c:if test="${idmsg != null}">
-						<span style="color: red;">${idmsg}</span>
+				<form action="<%=basePath%>/user/reg" method="post">
+					<c:if test="${usermsg != null}">
+						<span style="color: red;">${usermsg}</span>
 					</c:if>
-					<div class="input-group col-md-6 mb-3  container">
+					<div class="input-group col-md-6  mb-2 container">
 						<div class="input-group-prepend ">
 							<span class="input-group-text"> <ion-icon name="person"></ion-icon>
 							</span>
 						</div>
-						<input type="text" class="form-control " placeholder="身份证号"
+						<input type="text" class="form-control " placeholder="你的名字"
 							id="usr" name="username">
+					</div>
+					<c:if test="${idmsg != null}">
+						<span style="color: red;">${idmsg}</span>
+					</c:if>
+					<div class="input-group col-md-6 mb-2 container">
+						<div class="input-group-prepend ">
+							<span class="input-group-text"> <ion-icon name="card"></ion-icon>
+							</span>
+						</div>
+						<input type="text" class="form-control" placeholder="身份证号,登录使用身份证号登录" 
+							name="idcard">
 					</div>
 					<c:if test="${pwdmsg != null}">
 						<span style="color: red;">${pwdmsg}</span>
 					</c:if>
-					<div class="input-group col-md-6 mb-3 container">
+					<div class="input-group col-md-6 mb-2 container">
 						<div class="input-group-prepend ">
 							<span class="input-group-text"> <ion-icon name="key"></ion-icon>
 							</span>
 						</div>
-						<input type="password" class="form-control" placeholder="用户密码"
+						<input type="password" class="form-control" placeholder="设置账号密码"
 							id="usr" name="password">
 					</div>
+					<!-- <div class="input-group col-md-6 mb-3 container">
+						<div class="input-group-prepend ">
+							<span class="input-group-text"> <ion-icon name="key"></ion-icon>
+							</span>
+						</div>
+						<input type="password" class="form-control" placeholder="二次确认密码"
+							id="usr" name="isPassword">
+					</div> -->
+					
 					<c:if test="${codemsg != null}">
 						<span style="color: red;">${codemsg}</span>
 					</c:if>
-					<div class="input-group col-md-6 mb-3 container">
-						<div class="input-group-prepend ">
-							<img
-								src="https://try.gogs.io/captcha/pyb5zJDnk7D34E6.png?reload=1578663065959"
-								class="card-img-top" alt="Deencode">
-						</div>
-					</div>
-					<div class="input-group col-md-6 mb-3 container">
+				
+					<div class="input-group col-md-6 mb-2 container">
 						<div class="input-group-prepend ">
 							<span class="input-group-text"> <ion-icon name="create"></ion-icon>
 							</span>
 						</div>
 						<input type="text" class="form-control" placeholder="验证码" id="usr"
 							name="captcha">
+						
 					</div>
-
-					<button type="submit" class="btn btn-primary col-md-3">登 录</button>
-					<a href="<%=basePath%>/register" style="text-decoration: none">没有账号？去注册！</a>
+					<div class="input-group col-xs-2  col-md-6 mb-1 container">
+						<img   height="100px"
+								src="http://captcha.qq.com/getimage?aid=2000201&uin=0&0.2280964796590892"
+								class="card-img-top" alt="Deencode">	
+					</div>
+					<button type="submit" class="btn btn-success col-md-3">创建账号</button>
+					<a href="<%=basePath%>/login" style="text-decoration: none">已有账号？去登录！</a>
 				</form>
 
 			</div>
 		</div>
 	</div>
 	<hr>
-	<footer class="footer navbar-fixed-bottom">
+	<footer class="footer">
 		<div class="container">
 			<p>© Company 2017-2019</p>
 		</div>
 	</footer>
-
 	<script src="<%=basePath%>/static/js/jquery.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.bundle.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.min.js"></script>
 </body>
-</html>

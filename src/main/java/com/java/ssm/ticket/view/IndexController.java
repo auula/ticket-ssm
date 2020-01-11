@@ -3,7 +3,6 @@ package com.java.ssm.ticket.view;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -21,8 +20,14 @@ public class IndexController {
 	}
 	
 	//登录处理器
-	@GetMapping("/login")
+	@RequestMapping("/login")
 	public String login(){
 		return "login";
+	}
+	
+	//注册处理器
+	@RequestMapping("/register")
+	public String register(){
+		return "register";
 	}
 }

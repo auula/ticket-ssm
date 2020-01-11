@@ -30,12 +30,13 @@
         class="navbar-fixed-top d-flex flex-column flex-md-row align-items-center p-2  px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <h5 class="my-0 mr-md-auto font-weight-normal " style="font-family: sy;">肇庆市旅游</h5>
         <nav class="my-2 my-md-0 mr-md-3">
+        	<a class="p-2 text-dark" href="<%=basePath%>">首页</a>
             <a class="p-2 text-dark" href="#">热门景点</a>
             <a class="p-2 text-dark" href="#">最新景点</a>
         </nav>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="btn btn-outline-primary px-md-4 " href="<%=basePath%>/login">登 录</a>
-            <a class="btn btn-outline-dark px-md-4  " href="#">注 册</a>
+            <a class="btn btn-outline-dark px-md-4  " href="<%=basePath%>/register">注 册</a>
         </nav>
     </div>
 
