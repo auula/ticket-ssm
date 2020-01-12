@@ -53,6 +53,9 @@
 			<div class="card-header text-center header">
 				<h5>游客注册</h5>
 			</div>
+			<c:if test="${msg != null}">
+				<div class="alert alert-success text-center" role="alert">${msg}</div>
+			</c:if>
 			<div class="card-body mb-5 text-center ">
 				<form action="<%=basePath%>/user/reg" method="post">
 					<c:if test="${usermsg != null}">
@@ -74,8 +77,8 @@
 							<span class="input-group-text"> <ion-icon name="card"></ion-icon>
 							</span>
 						</div>
-						<input type="text" class="form-control" placeholder="身份证号,登录使用身份证号登录" 
-							name="idcard">
+						<input type="text" class="form-control"
+							placeholder="身份证号,登录使用身份证号登录" name="idcard">
 					</div>
 					<c:if test="${pwdmsg != null}">
 						<span style="color: red;">${pwdmsg}</span>
@@ -96,11 +99,11 @@
 						<input type="password" class="form-control" placeholder="二次确认密码"
 							id="usr" name="isPassword">
 					</div> -->
-					
+
 					<c:if test="${codemsg != null}">
 						<span style="color: red;">${codemsg}</span>
 					</c:if>
-				
+
 					<div class="input-group col-md-6 mb-2 container">
 						<div class="input-group-prepend ">
 							<span class="input-group-text"> <ion-icon name="create"></ion-icon>
@@ -108,12 +111,12 @@
 						</div>
 						<input type="text" class="form-control" placeholder="验证码" id="usr"
 							name="captcha">
-						
+
 					</div>
 					<div class="input-group col-xs-2  col-md-6 mb-1 container">
-						<img   height="100px"
-								src="http://captcha.qq.com/getimage?aid=2000201&uin=0&0.2280964796590892"
-								class="card-img-top" alt="Deencode">	
+						<img height="100px"
+							src="http://captcha.qq.com/getimage?aid=2000201&uin=0&0.2280964796590892"
+							class="card-img-top" alt="Deencode">
 					</div>
 					<button type="submit" class="btn btn-success col-md-3">创建账号</button>
 					<a href="<%=basePath%>/login" style="text-decoration: none">已有账号？去登录！</a>

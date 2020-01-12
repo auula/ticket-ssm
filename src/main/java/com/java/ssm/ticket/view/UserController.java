@@ -9,6 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.java.ssm.ticket.model.User;
+import com.java.ssm.ticket.service.UserService;
+import com.java.ssm.ticket.utils.DateUtil;
+
 /**
  * 用户请求处理器
  * 
@@ -25,32 +29,53 @@ public class UserController {
 	@Autowired
 	HttpServletRequest req;
 
+	@Autowired
+	UserService us;
+
 	@PostMapping("/reg")
-	public String register(String username,String idcard, String password, String captcha, Model md) {
+	public String register(User user, String captcha, Model md) {
 		// 检查表单是否为空 长度是否为6位和8位
 
 		// 开关
 		boolean flag = true;
-		if (username == null || username.isBlank()) {
+		if (user.getUsername() == null || user.getUsername().isBlank()) {
 			md.addAttribute("usermsg", "请填写你的名字!");
 			flag = false;
 		}
-		if (username == null || idcard.getBytes().length < 18) {
+		if (user.getIdcard() == null || user.getIdcard().getBytes().length < 18) {
 			md.addAttribute("idmsg", "身份证号错误!");
 			flag = false;
 		}
-		if (password == null || password.getBytes().length < 8) {
+		if (user.getPassword() == null || user.getPassword().getBytes().length < 8) {
 			md.addAttribute("pwdmsg", "密码长度是为8位!");
 			flag = false;
 		}
-		
+
 		if (captcha == null || captcha.getBytes().length < 4) {
 			md.addAttribute("codemsg", "验证码错误!");
 			flag = false;
 		}
-		//如果表单验证不成功则转发到register页面
-		return !flag ? "forward:/register" : "index";
+		// 如果表单验证不成功则转发到register页面
+		// return !flag ? "forward:/register" : toReg(user,md);
+		if (flag) {
+			user.setCreateTime(DateUtil.asDateToTimestamp());
+			if (us.registerOneUserInfo(user)) {
+				md.addAttribute("msg", "身份证号:" + user.getIdcard() + "注册成功!请去登录!");
+				return "forward:/register";
+			}
+			md.addAttribute("msg", "注册失败!请去稍后重试!");
+		}
+		return "forward:/register";
 	}
+
+//	public String toReg(User user, Model ui) {
+//		if (us.registerOneUserInfo(user)) {
+//			ui.addAttribute("msg", "身份证号:" + user.getIdcard() + "注册成功!请去登录!");
+//			return "forward:/register";
+//		}
+//		// ui.addAttribute("success-msg","注册失败!请去稍后重试!");
+//		return "forward:/register";
+//	}
 
 	@PostMapping("/login")
 	public String login(String idcard, String password, String captcha, Model md) {
@@ -60,19 +85,19 @@ public class UserController {
 		if (idcard == null || idcard.getBytes().length < 18) {
 			md.addAttribute("idmsg", "请检查你的身份证账号!");
 			flag = false;
-			
+
 		}
 		if (password == null || password.getBytes().length < 8) {
 			md.addAttribute("pwdmsg", "请检查你的密码!");
 			flag = false;
-			
+
 		}
-		if (captcha == null|| captcha.getBytes().length < 4) {
+		if (captcha == null || captcha.getBytes().length < 4) {
 			md.addAttribute("codemsg", "验证码错误!");
 			flag = false;
-			
+
 		}
-		//如果表单验证不成功则转发到login页面
+		// 如果表单验证不成功则转发到login页面
 		return !flag ? "forward:/login" : "index";
 	}
 }
