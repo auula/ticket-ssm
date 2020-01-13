@@ -53,6 +53,9 @@
 			<div class="card-header text-center header">
 				<h5>游客登录</h5>
 			</div>
+			<c:if test="${msg !=null }">
+				<div class="alert alert-danger text-center" role="alert">${msg}</div>
+			</c:if>
 			<div class="card-body mb-5 text-center ">
 
 				<form action="<%=basePath%>/user/login" method="post">
@@ -65,7 +68,7 @@
 							</span>
 						</div>
 						<input type="text" class="form-control " placeholder="身份证号"
-							id="usr" name="username">
+							id="usr" name="idcard">
 					</div>
 					<c:if test="${pwdmsg != null}">
 						<span style="color: red;">${pwdmsg}</span>
@@ -83,9 +86,8 @@
 					</c:if>
 					<div class="input-group col-md-6 mb-3 container" id="captcha_img">
 						<div class="input-group-prepend ">
-							<img
-								src="<%=basePath %>/captcha/img"
-								class="card-img-top"  alt="Deencode">
+							<img src="<%=basePath%>/captcha/img" class="card-img-top"
+								alt="Deencode">
 						</div>
 					</div>
 					<div class="input-group col-md-6 mb-3 container">
@@ -116,7 +118,7 @@
 	<script src="<%=basePath%>/static/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$("#captcha_img").click(function () {
-	    	$(".card-img-top").attr("src",'<%=basePath%>/captcha/img?args='+new Date().getTime());
+	    	$(".card-img-top").attr("src",'<%=basePath%>/captcha/img?args='+ new Date().getTime());
 		})
 	</script>
 </body>

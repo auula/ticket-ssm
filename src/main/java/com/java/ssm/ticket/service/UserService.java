@@ -28,9 +28,24 @@ public class UserService {
 	/**
 	 * 查询用户是否被注册
 	 * @param idcard
-	 * @return flase 身份证已经被注册
+	 * @return false 身份证已经被注册
 	 */
 	public Boolean checkUserIdCard(String idcard) {
 		return userDao.findUserByIdCard(idcard) != null ? false : true;
+	}
+	
+	/**
+	 * 检查用户账号和密码是否正确
+	 * @param user
+	 * @return true 表示正确
+	 */
+	public Boolean checkUserPassword(User user) {
+		//通过身份证查询用户
+		User u =userDao.findUserByIdCard(user.getIdcard());
+		//如果表单的密码和数据库通过身份证id查询带密码一致就表明账号和密码正确
+		if(user.getPassword().equals(u.getPassword())) {
+			return true;
+		}
+		return false;
 	}
 }
