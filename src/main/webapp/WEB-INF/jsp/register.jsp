@@ -104,20 +104,23 @@
 						<span style="color: red;">${codemsg}</span>
 					</c:if>
 
-					<div class="input-group col-md-6 mb-2 container">
+					<div class="input-group col-md-6 mb-3 container">
+						<div class="input-group-prepend ">
+							<img
+								src="http://localhost:8088/ticket-ssm/captcha/img"
+								class="card-img-top" alt="Deencode">
+						</div>
+					</div>
+					<div class="input-group col-md-6 mb-3 container">
 						<div class="input-group-prepend ">
 							<span class="input-group-text"> <ion-icon name="create"></ion-icon>
 							</span>
 						</div>
 						<input type="text" class="form-control" placeholder="验证码" id="usr"
 							name="captcha">
+					</div>
 
-					</div>
-					<div class="input-group col-xs-2  col-md-6 mb-1 container">
-						<img height="100px"
-							src="http://captcha.qq.com/getimage?aid=2000201&uin=0&0.2280964796590892"
-							class="card-img-top" alt="Deencode">
-					</div>
+
 					<button type="submit" class="btn btn-success col-md-3">创建账号</button>
 					<a href="<%=basePath%>/login" style="text-decoration: none">已有账号？去登录！</a>
 				</form>

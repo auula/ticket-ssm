@@ -55,6 +55,10 @@ public class UserController {
 			md.addAttribute("codemsg", "验证码错误!");
 			flag = false;
 		}
+		if(!us.checkUserIdCard(user.getIdcard())) {
+			md.addAttribute("msg", "身份证号:"+user.getIdcard()+"已经被注册了!换一个试试~");
+			flag = false;
+		}
 		// 如果表单验证不成功则转发到register页面
 		// return !flag ? "forward:/register" : toReg(user,md);
 		if (flag) {

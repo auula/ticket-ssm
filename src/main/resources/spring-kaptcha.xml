@@ -19,19 +19,19 @@
 						<!-- 验证码文本字符颜色 -->
 						<prop key="kaptcha.textproducer.font.color">black</prop>
 						<!-- 验证码图片宽度 -->
-						<prop key="kaptcha.image.width">118</prop>
+						<prop key="kaptcha.image.width">240</prop>
 						<!-- 验证码图片高度 -->
-						<prop key="kaptcha.image.height">46</prop>
+						<prop key="kaptcha.image.height">80</prop>
 						<!-- 验证码文本字符大小 -->
-						<prop key="kaptcha.textproducer.font.size">38</prop>
+						<prop key="kaptcha.textproducer.font.size">48</prop>
 						<!-- kaptcha.textproducer.char.string   验证码文本字符内容范围 -->
-						<prop key="kaptcha.textproducer.char.string">23456789ABXWHTMKF</prop>
+						<prop key="kaptcha.textproducer.char.string">23456789ABEXJWHTMKF</prop>
 						<!-- session中存放验证码的key键 -->
 						<prop key="kaptcha.session.key">_captcha</prop>
 						<!-- 验证码噪点颜色 -->
 						<prop key="kaptcha.noise.color">white</prop>
 						<!-- 验证码文本字符间距 -->
-						<prop key="kaptcha.textproducer.char.space">3</prop>
+						<prop key="kaptcha.textproducer.char.space">16</prop>
 						<!-- 验证码样式引擎 -->
 						<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
 						<!-- 验证码文本字符长度 -->
