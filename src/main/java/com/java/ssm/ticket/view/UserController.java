@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +24,10 @@ import com.java.ssm.ticket.utils.DateUtil;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
+	
+	
+	private static final String USER_LOGIN_KEY = "loginUserInfo";
+	
 	@Autowired
 	HttpServletResponse resp;
 
@@ -65,7 +69,7 @@ public class UserController {
 				md.addAttribute("msg", "身份证号:" + user.getIdcard() + "已经被注册了!换一个试试~");
 				flag = false;
 			} else {// 如果没有被注册去执行注册
-				user.setCreateTime(DateUtil.asDateToTimestamp());
+				user.setCreateTime(DateUtil.asDateToTimestamp());//设置用户注册的时间 
 				if (us.registerOneUserInfo(user)) {// 是否为注册成功
 					md.addAttribute("msg", "身份证号:" + user.getIdcard() + "注册成功!请去登录!");
 					return "forward:/register";
@@ -111,6 +115,7 @@ public class UserController {
 		if (flag) {// 只有flag 是true的时候表面form args验证通过
 			// 通过UserService检查用户输入的密码
 			if (us.checkUserPassword(user)) {
+				SessionLoginUser(user);
 				return "redirect:/index.html";
 			} else {
 				md.addAttribute("msg", "身份证号码或者密码错误!或者你身份证未注册~");
@@ -120,4 +125,22 @@ public class UserController {
 		// 如果执行到这里来说明用户表单数据没有验证通过
 		return "forward:/login";
 	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		//移除保存在session中的用户信息
+		req.getSession().removeAttribute(USER_LOGIN_KEY);
+		return "redirect:/index.html";
+	}
+	
+	//登录普通用户
+	public void SessionLoginUser(User user) {
+		//user 是表单的user 我们不能直接使用 所以使用getUserByIdCard查询一下在使用
+		User u = us.getUserByIdCard(user.getIdcard());
+		//将登录的用户保存在session中方便鉴权使用
+		req.getSession().setAttribute(USER_LOGIN_KEY, u);
+	}
+	
+	
+	
 }

@@ -48,4 +48,13 @@ public class UserService {
 		}
 		return false;
 	}
+	
+	/**
+	 * 通过身份证查询用户
+	 * @param idcard
+	 * @return 用户
+	 */
+	public User getUserByIdCard(String idcard){
+		return userDao.findUserByIdCard(idcard);
+	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -28,16 +29,41 @@
 <body>
     <div
         class="navbar-fixed-top d-flex flex-column flex-md-row align-items-center p-2  px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal " style="font-family: sy;">肇庆市旅游</h5>
+        <h5 class="my-0  font-weight-normal mr-md-3" style="font-family: sy;">肇庆市旅游</h5>
+        <nav class="my-0 mr-md-auto font-weight-normal">
+            <form class="form-inline mt-2 mt-md-0" action="<%=basePath%>/search?Key=">
+                <input class="form-control mr-sm-2" type="text" placeholder="搜索景点" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
         <nav class="my-2 my-md-0 mr-md-3">
         	<a class="p-2 text-dark" href="<%=basePath%>">首页</a>
-            <a class="p-2 text-dark" href="#">热门景点</a>
+            
             <a class="p-2 text-dark" href="#">最新景点</a>
         </nav>
-        <nav class="my-2 my-md-0 mr-md-3">
-            <a class="btn btn-outline-primary px-md-4 " href="<%=basePath%>/login">登 录</a>
-            <a class="btn btn-outline-dark px-md-4  " href="<%=basePath%>/register">注 册</a>
+        <c:if test="${sessionScope.loginUserInfo == null}">
+			<nav class="my-2 my-md-0 mr-md-3">
+				<a class="btn btn-outline-primary px-md-4 "
+				href="<%=basePath%>/login">登 录 </a>
+				<a class="btn btn-outline-dark px-md-4  " href="<%=basePath%>/register">注册</a>
+			</nav>
+		</c:if>
+		<c:if test="${sessionScope.loginUserInfo != null}">
+		<nav class="my-2 my-md-0 mr-md-3">
+            <div class="btn-group px-md-4">
+                <button type="button" class="btn btn-primary">${sessionScope.loginUserInfo.getUsername()}</button>
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="<%=basePath%>/user/shop">购买记录</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<%=basePath%>/user/logout">Logout</a>
+                </div>
+            </div>
         </nav>
+		</c:if>
     </div>
 
     <div class="album py-5 bg-light bg-white">
