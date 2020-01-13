@@ -104,11 +104,11 @@
 						<span style="color: red;">${codemsg}</span>
 					</c:if>
 
-					<div class="input-group col-md-6 mb-3 container">
+					<div class="input-group col-md-6 mb-3 container " id="captcha_img">
 						<div class="input-group-prepend ">
 							<img
-								src="http://localhost:8088/ticket-ssm/captcha/img"
-								class="card-img-top" alt="Deencode">
+								src="<%=basePath %>/captcha/img"
+								class="card-img-top"  alt="Deencode">
 						</div>
 					</div>
 					<div class="input-group col-md-6 mb-3 container">
@@ -137,4 +137,10 @@
 	<script src="<%=basePath%>/static/js/jquery.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.bundle.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		// 点击验证码图片 刷新验证码
+		$("#captcha_img").click(function () {
+		    $(".card-img-top").attr("src",'<%=basePath%>/captcha/img?args='+new Date().getTime());
+		})
+	</script>
 </body>

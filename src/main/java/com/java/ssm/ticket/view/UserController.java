@@ -55,19 +55,24 @@ public class UserController {
 			md.addAttribute("codemsg", "验证码错误!");
 			flag = false;
 		}
-		if(!us.checkUserIdCard(user.getIdcard())) {
-			md.addAttribute("msg", "身份证号:"+user.getIdcard()+"已经被注册了!换一个试试~");
-			flag = false;
-		}
+
 		// 如果表单验证不成功则转发到register页面
 		// return !flag ? "forward:/register" : toReg(user,md);
 		if (flag) {
-			user.setCreateTime(DateUtil.asDateToTimestamp());
-			if (us.registerOneUserInfo(user)) {
-				md.addAttribute("msg", "身份证号:" + user.getIdcard() + "注册成功!请去登录!");
-				return "forward:/register";
+			// 检查身份证是否被注册
+			if (!us.checkUserIdCard(user.getIdcard())) {
+				md.addAttribute("msg", "身份证号:" + user.getIdcard() + "已经被注册了!换一个试试~");
+				flag = false;
+			} else {//如果没有被注册去执行注册
+				user.setCreateTime(DateUtil.asDateToTimestamp());
+				if (us.registerOneUserInfo(user)) {//是否为注册成功
+					md.addAttribute("msg", "身份证号:" + user.getIdcard() + "注册成功!请去登录!");
+					return "forward:/register";
+				} else {//没有注册成功
+					md.addAttribute("msg", "注册失败!请去稍后重试!");
+				}
 			}
-			md.addAttribute("msg", "注册失败!请去稍后重试!");
+
 		}
 		return "forward:/register";
 	}

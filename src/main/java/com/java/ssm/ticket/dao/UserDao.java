@@ -38,6 +38,6 @@ public interface UserDao {
 	 * @param idcard
 	 * @return user
 	 */
-	@Select("SELECT * FROM `ticket`.`user_table` WHERE idcard = #{idcrad}")
+	@Select("SELECT * FROM `ticket`.`user_table` WHERE idcard = #{idcard}")
 	User findUserByIdCard(@Param(value = "idcard") String idcard);
 }

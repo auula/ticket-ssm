@@ -67,7 +67,6 @@ public class CaptchaController {
 
 			out.flush();
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		} finally {
 			try {
