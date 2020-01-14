@@ -126,6 +126,8 @@ public class UserController {
 		return "forward:/login";
 	}
 	
+	
+	
 	@GetMapping("/logout")
 	public String logout() {
 		//移除保存在session中的用户信息
