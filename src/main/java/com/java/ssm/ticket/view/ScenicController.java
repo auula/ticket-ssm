@@ -2,6 +2,7 @@ package com.java.ssm.ticket.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +25,16 @@ public class ScenicController {
 	 * @param id 景点id
 	 * @return 详情视图
 	 */
-	@GetMapping("/detdils/{id}")
-	public String detdils(@PathVariable String id) {
+	@GetMapping("/details/{id}")
+	public String details(@PathVariable String id,Model ui) {
+		//防止id为空 并且 如果空就负默认值为1
 		if (id == null || id.isBlank()) {
 			id = String.valueOf(1);
 		}
-		return "detdils";
+		ss.addOneStar(id);
+		ui.addAttribute("details", ss.getScenicBySid(id));
+		return "details";
 	}
+	
+
 }

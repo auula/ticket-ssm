@@ -11,7 +11,7 @@ public class Scenic {
 	private String scenicName;
 	private BigDecimal scenicPrice;
 	private String scenicAddress;
-	private String scenicDetdils;
+	private String scenicDetails;
 	private String scenicPic;
 	private Integer scenicStar;
 	private Timestamp createTime;
@@ -48,12 +48,12 @@ public class Scenic {
 		this.scenicAddress = scenicAddress;
 	}
 
-	public String getScenicDetdils() {
-		return scenicDetdils;
+	public String getScenicDetails() {
+		return scenicDetails;
 	}
 
-	public void setScenicDetdils(String scenicDetdils) {
-		this.scenicDetdils = scenicDetdils;
+	public void setScenicDetails(String scenicDetails) {
+		this.scenicDetails = scenicDetails;
 	}
 
 	public String getScenicPic() {
@@ -83,7 +83,7 @@ public class Scenic {
 	@Override
 	public String toString() {
 		return "Scenic [sid=" + sid + ", scenicName=" + scenicName + ", scenicPrice=" + scenicPrice + ", scenicAddress="
-				+ scenicAddress + ", scenicDetdils=" + scenicDetdils + ", scenicPic=" + scenicPic + ", scenicStar="
+				+ scenicAddress + ", scenicDetdils=" + scenicDetails + ", scenicPic=" + scenicPic + ", scenicStar="
 				+ scenicStar + ", createTime=" + createTime + "]";
 	}
 

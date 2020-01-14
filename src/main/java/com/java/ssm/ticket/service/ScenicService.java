@@ -25,4 +25,27 @@ public class ScenicService {
 	public List<Scenic> getAll(){
 		return sd.getAllScenic();
 	}
+	
+	/**
+	 * 获取通过sid获取scenic
+	 * @param sid
+	 * @return scenic
+	 */
+	public Scenic getScenicBySid(String sid) {
+		return sd.findScenicBySid(Long.valueOf(sid));
+	}
+	
+	
+	
+	/**
+	 * star热门次数自加
+	 * @param sid
+	 */
+	public void addOneStar(String sid){
+		Scenic sc = sd.findScenicBySid(Long.valueOf(sid));
+		//获取数据库原理的值然后加1 然后就实现用户每点击一次详情 景点star数就加一
+		sc.setScenicStar(sc.getScenicStar()+1);
+		//更新保存到数据库
+		sd.UpdateScenic(sc);
+	}
 }

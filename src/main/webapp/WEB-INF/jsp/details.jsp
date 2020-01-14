@@ -8,7 +8,6 @@
 %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,38 +70,26 @@
 			</nav>
 		</c:if>
 	</div>
-
 	<div class="album py-5 bg-light bg-white">
-		<div class="container">
-			<div class="row">
-				<c:forEach items="${ss}" var="item">
-					<div class="col-md-4">
-						<div class="card mb-4 shadow-sm">
-							<img width="100%" height="225" src="${item.getScenicPic()}"
-								class="card-img-top" alt="...">
-							<div class="card-body">
-								<p class="card-text">
-								<p>景点名称: ${item.getScenicName() }</p>
-								<p>景点地址: ${item.getScenicAddress()}</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<a href="<%=basePath %>/Scenic/details/${item.getSid()}" class="btn btn-sm btn-outline-primary">查看详情</a>
-										<a   class="btn btn-sm btn-outline-success">购买门票</a>
-									</div>
-									<!-- 景点的star数大于或者等于20才会显示热门 -->
-									<c:if test="${item.getScenicStar() >= 20}">
-										<span class="badge badge-pill badge-danger">热门</span>
-									</c:if>
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
+		<div class="container text-center">
+			<img style="height: 480px; width: 900px;"
+				src="https://dimg08.c-ctrip.com/images/10091800000158k9e21A6_C_1600_1200_Mtg_7.jpg"
+				class="img-fluid" alt="Responsive image">
+		</div>
+	</div>
+	<div class="container">
+		<div class="card text-center">
+			<div class="card-header">${details.getScenicName()}</div>
+			<div class="card-body">
+				<h5 class="card-title">价格: <span>${details.getScenicPrice()}</span>￥/人</h5>
+				<p class="card-text">
+					<span style="color: blue;"> 景点地址: </span>${details.getScenicAddress()}<br>
+					<span style="color: blue;"> 景点介绍: </span>${details.getScenicDetails()}
+				</p>
+				<a href="#" class="btn btn-primary">立即购票</a>
 			</div>
 		</div>
 	</div>
-
 	<hr>
 	<footer class="container">
 		<p>© Company 2017-2019</p>
