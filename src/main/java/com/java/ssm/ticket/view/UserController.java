@@ -26,7 +26,7 @@ import com.java.ssm.ticket.utils.DateUtil;
 public class UserController {
 	
 	
-	private static final String USER_LOGIN_KEY = "loginUserInfo";
+	public static final String USER_LOGIN_KEY = "loginUserInfo";
 	
 	@Autowired
 	HttpServletResponse resp;
