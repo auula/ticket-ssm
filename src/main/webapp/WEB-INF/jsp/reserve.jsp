@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="<%=basePath%>/static/css/bootstrap-grid.min.css">
 	<link rel="stylesheet" href="<%=basePath%>/static/css/bootstrap-reboot.css">
 	<link rel="stylesheet" href="<%=basePath%>/static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%=basePath%>/static/css/sweetalert2.min.css">
 	<style>
 		@font-face {
 			font-family: sy;
@@ -84,19 +85,21 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text">预定</span>
 								</div>
-								<input type="text" class="form-control" style="text-align: center;" placeholder="?">
+								<input type="text" class="form-control" id="count" style="text-align: center;"
+									placeholder="?">
 								<div class="input-group-append">
 									<span class="input-group-text">人数</span>
 								</div>
 
 							</div>
-						</li>	
+						</li>
 						<li>You can view the record after the order is completed</li>
 						<li>Total price = (real time unit price * scheduled number of people)</li>
 						<li>Voucher = order number</li>
 
 					</ul>
-					<button type="button" class="btn btn-lg btn-block btn-outline-primary">提 交 预 定</button>
+					<button type="button" onclick="sendOrder()" class="btn btn-lg btn-block btn-outline-primary">提 交 预
+						定</button>
 				</div>
 			</div>
 		</div>
@@ -109,11 +112,49 @@
 	<script src="<%=basePath%>/static/js/jquery.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.bundle.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.min.js"></script>
+	<script src="<%=basePath%>/static/js/sweetalert2.min.js"></script>
 	<script type="text/javascript">
 		$("#btn-search").click(function () {
 			var tempKey = $('#search-text').val();
 			window.location.href = '<%=basePath%>/search?key=' + tempKey;
 		});
+		//发下单请求
+		function sendOrder() {
+			if ($('#count').val() == "") {
+				swal('预定人数为空!')
+				return;
+			}
+			//请求表单
+			var postform = {
+				sid: $ {
+					sc.getSid()
+				}, //scenic的id
+				count: $('#count').val() //个数
+			};
+			//请求下单订单接口
+			$.post('<%=basePath%>/reserve/order', postform, function (result) {
+				if (result.status == 200) {
+					swal({
+						title: '预定下单成功!价格为:' + result.totalPrice + '元',
+						text: '右上角查看购买记录.',
+						type: 'success',
+						confirmButtonColor: '#3085d6',
+						confirmButtonText: '确 认'
+					}).then(function (isConfirm) {
+						if (isConfirm) {
+							console.log(result);
+						}
+					})
+				} else {
+					//请求处理失败就执行这个错误js
+					swal(
+						'发生了错误~',
+						result.msg,
+						'error'
+					);
+				}
+			})
+		}
 	</script>
 </body>
 
