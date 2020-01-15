@@ -72,14 +72,13 @@
 		<div class="card-deck mb-3 text-center">
 			<div class="card mb-4 shadow-sm">
 				<div class="card-header">
-					<h4 class="my-0 font-weight-normal">景点名字</h4>
+					<h4 class="my-0 font-weight-normal">${sc.getScenicName()}</h4>
 				</div>
 				<div class="card-body">
 					<h1 class="card-title pricing-card-title">
-						￥ 68<small class="text-muted"> / mo</small>
+						￥ ${sc.getScenicPrice()}<small class="text-muted"> / mo</small>
 					</h1>
 					<ul class="list-unstyled mt-3 mb-4">
-
 						<li>
 							<div class="input-group mb-3 col-md-3 container">
 								<div class="input-group-prepend">
@@ -91,6 +90,7 @@
 								</div>
 
 							</div>
+						</li>	
 						<li>You can view the record after the order is completed</li>
 						<li>Total price = (real time unit price * scheduled number of people)</li>
 						<li>Voucher = order number</li>

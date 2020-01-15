@@ -72,7 +72,7 @@
 	<div class="album py-5 bg-light bg-white">
 		<div class="container text-center">
 			<img style="height: 480px; width: 900px;"
-				src="https://dimg08.c-ctrip.com/images/10091800000158k9e21A6_C_1600_1200_Mtg_7.jpg"
+				src="${details.getScenicPic()}"
 				class="img-fluid" alt="Responsive image">
 		</div>
 	</div>
@@ -85,7 +85,7 @@
 					<span style="color: blue;"> 景点地址: </span>${details.getScenicAddress()}<br>
 					<span style="color: blue;"> 景点介绍: </span>${details.getScenicDetails()}
 				</p>
-				<a href="#" class="btn btn-primary">立即购票</a>
+				<a href="<%=basePath %>/reserve/${details.getSid()}"  class="btn btn-primary">立即购票</a>
 			</div>
 		</div>
 	</div>

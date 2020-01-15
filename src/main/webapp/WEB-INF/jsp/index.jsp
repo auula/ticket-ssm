@@ -86,7 +86,7 @@
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
 										<a href="<%=basePath %>/Scenic/details/${item.getSid()}" class="btn btn-sm btn-outline-primary">查看详情</a>
-										<a   class="btn btn-sm btn-outline-success">购买门票</a>
+										<a href="<%=basePath %>/reserve/${item.getSid()}"  class="btn btn-sm btn-outline-success">购买门票</a>
 									</div>
 									<!-- 景点的star数大于或者等于20才会显示热门 -->
 									<c:if test="${item.getScenicStar() >= 20}">
