@@ -126,8 +126,8 @@
 			}
 			//请求表单
 			var postform = {
-				sid: $ {sc.getSid()}, //scenic的id
-				count: $('#count').val() //个数
+				sid:${sc.getSid()}, //scenic的id
+				count:$('#count').val() //个数
 			};
 			//请求下单订单接口
 			$.post('<%=basePath%>/reserve/order', postform, function (result) {
