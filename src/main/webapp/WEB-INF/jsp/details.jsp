@@ -33,12 +33,11 @@
 		class="navbar-fixed-top d-flex flex-column flex-md-row align-items-center p-2  px-md-4 mb-3 bg-white border-bottom shadow-sm">
 		<h5 class="my-0  font-weight-normal mr-md-3" style="font-family: sy;">肇庆市旅游</h5>
 		<nav class="my-0 mr-md-auto font-weight-normal">
-			<form class="form-inline mt-2 mt-md-0"
-				action="<%=basePath%>/search?Key=">
-				<input class="form-control mr-sm-2" type="text" placeholder="搜索景点"
+			<div class="form-inline mt-2 mt-md-0" >
+				<input class="form-control  mr-sm-2"  id="search-text" type="text" placeholder="搜索景点"
 					aria-label="Search">
-				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-			</form>
+				<button class="btn btn-outline-primary my-2 my-sm-0" id="btn-search"   type="button">Search</button>
+			</div>
 		</nav>
 		<nav class="my-2 my-md-0 mr-md-3">
 			<a class="p-2 text-dark" href="<%=basePath%>">首页</a> <a
@@ -97,6 +96,12 @@
 	<script src="<%=basePath%>/static/js/jquery.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.bundle.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$("#btn-search").click(function() {
+		var tempKey = $('#search-text').val();
+		window.location.href = '<%=basePath%>/search?key=' + tempKey;
+	});
+	</script>
 </body>
 
 

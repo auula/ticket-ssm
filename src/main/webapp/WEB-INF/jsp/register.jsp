@@ -35,11 +35,12 @@
 		<h5 class="my-0  font-weight-normal mr-md-3"
 			style="font-family: sy;">肇庆市旅游</h5>
 		<nav class="my-0 mr-md-auto font-weight-normal">
-            <form class="form-inline mt-2 mt-md-0" action="<%=basePath%>/search?Key=">
-                <input class="form-control mr-sm-2" type="text" placeholder="搜索景点" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </nav>	
+			<div class="form-inline mt-2 mt-md-0" >
+				<input class="form-control  mr-sm-2"  id="search-text" type="text" placeholder="搜索景点"
+					aria-label="Search">
+				<button class="btn btn-outline-primary my-2 my-sm-0" id="btn-search"   type="button">Search</button>
+			</div>
+		</nav>
 		<nav class="my-2 my-md-0 mr-md-3">
 			<a class="p-2 text-dark" href="<%=basePath%>">首页</a>
 			 <a class="p-2 text-dark"
@@ -165,5 +166,11 @@
 		$("#captcha_img").click(function () {
 		    $(".card-img-top").attr("src",'<%=basePath%>/captcha/img?args='+new Date().getTime());
 		})
+		
+		$("#btn-search").click(function() {
+			var tempKey = $('#search-text').val();
+			console.log(tempKey)
+			window.location.href = '<%=basePath%>/search?key=' + tempKey;
+		});
 	</script>
 </body>

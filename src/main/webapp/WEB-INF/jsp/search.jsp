@@ -32,12 +32,11 @@
 		class="navbar-fixed-top d-flex flex-column flex-md-row align-items-center p-2  px-md-4 mb-3 bg-white border-bottom shadow-sm">
 		<h5 class="my-0  font-weight-normal mr-md-3" style="font-family: sy;">肇庆市旅游</h5>
 		<nav class="my-0 mr-md-auto font-weight-normal">
-			<form class="form-inline mt-2 mt-md-0"
-				action="<%=basePath%>/search?Key=">
-				<input class="form-control mr-sm-2" type="text" placeholder="搜索景点"
+			<div class="form-inline mt-2 mt-md-0" >
+				<input class="form-control  mr-sm-2"  id="search-text" type="text" placeholder="搜索景点"
 					aria-label="Search">
-				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-			</form>
+				<button class="btn btn-outline-primary my-2 my-sm-0" id="btn-search"   type="button">Search</button>
+			</div>
 		</nav>
 		<nav class="my-2 my-md-0 mr-md-3">
 			<a class="p-2 text-dark" href="<%=basePath%>">首页</a> <a
@@ -73,7 +72,8 @@
 	<div class="album py-5 bg-light bg-white">
 		<div class="container">
 			<div class="row">
-				<c:forEach items="${ss}" var="item">
+			<c:if test="${sc != null}">
+				<c:forEach items="${sc}" var="item">
 					<div class="col-md-4">
 						<div class="card mb-4 shadow-sm">
 							<img width="100%" height="225" src="${item.getScenicPic()}"
@@ -97,6 +97,10 @@
 						</div>
 					</div>
 				</c:forEach>
+				</c:if>
+				<c:if test="${sc == null}">
+						<h2 class="text-center" style="color: red;">无相关数据.</h2>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -108,7 +112,13 @@
 	<script src="<%=basePath%>/static/js/jquery.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.bundle.min.js"></script>
 	<script src="<%=basePath%>/static/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$("#btn-search").click(function() {
+		var tempKey = $('#search-text').val();
+		window.location.href = '<%=basePath%>/search?key=' + tempKey;
+	});
+	</script>
 </body>
-
+	
 
 </html>
