@@ -32,4 +32,14 @@ public class TestController {
 	public List<Scenic> put1(){
 		return ss.getAll();
 	}
+	
+	/**
+	 * http://localhost:8088/ticket-ssm/test/2
+	 * @return 测试关键字搜索功能
+	 */
+	@ResponseBody
+	@GetMapping("/2")
+	public List<Scenic> put2(){
+		return ss.searchKey("测试");
+	}
 }

@@ -48,4 +48,14 @@ public class ScenicService {
 		//更新保存到数据库
 		sd.UpdateScenic(sc);
 	}
+	
+	/**
+	 * 通过关键字查询景点
+	 * @param key 关键字
+	 * @return 返回查询结果集合
+	 */
+	public List<Scenic> searchKey(String key){
+		//调用数据访问层
+		return sd.searchKeyScenic(key);
+	}
 }
