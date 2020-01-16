@@ -8,6 +8,7 @@
 %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,15 +28,17 @@
 }
 </style>
 </head>
+
 <body>
 	<div
 		class="navbar-fixed-top d-flex flex-column flex-md-row align-items-center p-2  px-md-4 mb-3 bg-white border-bottom shadow-sm">
 		<h5 class="my-0  font-weight-normal mr-md-3" style="font-family: sy;">肇庆市旅游</h5>
 		<nav class="my-0 mr-md-auto font-weight-normal">
-			<div class="form-inline mt-2 mt-md-0" >
-				<input class="form-control  mr-sm-2"  id="search-text" type="text" placeholder="搜索景点"
-					aria-label="Search">
-				<button class="btn btn-outline-primary my-2 my-sm-0" id="btn-search"   type="button">Search</button>
+			<div class="form-inline mt-2 mt-md-0">
+				<input class="form-control  mr-sm-2" id="search-text" type="text"
+					placeholder="搜索景点" aria-label="Search">
+				<button class="btn btn-outline-primary my-2 my-sm-0" id="btn-search"
+					type="button">Search</button>
 			</div>
 		</nav>
 		<nav class="my-2 my-md-0 mr-md-3">
@@ -71,37 +74,40 @@
 
 	<div class="album py-5 bg-light bg-white">
 		<div class="container">
-			<div class="row">
-			<c:if test="${sc != null}">
-				<c:forEach items="${sc}" var="item">
-					<div class="col-md-4">
-						<div class="card mb-4 shadow-sm">
-							<img width="100%" height="225" src="${item.getScenicPic()}"
-								class="card-img-top" alt="...">
-							<div class="card-body">
-								<p class="card-text">
-								<p>景点名称: ${item.getScenicName() }</p>
-								<p>景点地址: ${item.getScenicAddress()}</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<a href="<%=basePath %>/Scenic/details/${item.getSid()}" class="btn btn-sm btn-outline-primary">查看详情</a>
-										<a href="<%=basePath %>/reserve/${item.getSid()}"   class="btn btn-sm btn-outline-success">购买门票</a>
-									</div>
-									<!-- 景点的star数大于或者等于20才会显示热门 -->
-									<c:if test="${item.getScenicStar() >= 20}">
-										<span class="badge badge-pill badge-danger">热门</span>
-									</c:if>
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-				</c:if>
-				<c:if test="${sc == null}">
-						<h2 class="text-center" style="color: red;">无相关数据.</h2>
-				</c:if>
-			</div>
+		<h5>预定购买记录</h5>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">订单表ID</th>
+						<th scope="col">订单号</th>
+						<th scope="col">景点名称</th>
+						<th scope="col">预定人数</th>
+						<th scope="col">下单时间</th>
+						<th scope="col">总价格</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:if test="${OL != null}">
+						<c:forEach items="${OL}" var="item">
+						<tr>
+								<th scope="row">${item.getOid()}</th>
+								<td>${item.getOrderNumber() }</td>
+								<td>${item.getScenicName() }</td>
+								<td>${item.getPeopleNumber()}</td>
+								<td>${item.getCreateTime() }</td>
+								<td>${item.getTotalMoney()}</td>
+						</tr>
+						</c:forEach>
+					</c:if>
+					
+					<c:if test="${OL == null}">
+						<tr>
+							<td style="color:red;">无相关订单记录数据.</td>
+						</tr>
+					</c:if>
+							
+				</tbody>
+			</table>
 		</div>
 	</div>
 
@@ -119,6 +125,6 @@
 	});
 	</script>
 </body>
-	
+
 
 </html>

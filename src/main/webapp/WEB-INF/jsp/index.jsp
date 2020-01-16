@@ -62,7 +62,7 @@
 						<span class="sr-only">Toggle Dropdown</span>
 					</button>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="<%=basePath%>/user/shop">购买记录</a>
+						<a class="dropdown-item" href="<%=basePath%>/order/list">购买记录</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="<%=basePath%>/user/logout">Logout</a>
 					</div>

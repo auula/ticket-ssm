@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.ssm.ticket.model.Scenic;
+import com.java.ssm.ticket.service.OrderService;
 import com.java.ssm.ticket.service.ScenicService;
 
 /**
@@ -26,6 +27,8 @@ public class ReserveConteroller {
 	
 	@Autowired
 	ScenicService ss;
+	@Autowired
+	OrderService os;
 	
 	/**
 	 * 渲染reserve页面数据
@@ -43,6 +46,7 @@ public class ReserveConteroller {
 	
 	
 	
+	
 	@ResponseBody
 	@PostMapping("/reserve/order")
 	public Map<String, Object> toReserve(@RequestParam String sid,@RequestParam String count) {
@@ -52,8 +56,14 @@ public class ReserveConteroller {
 			result.put("msg", "参数错误!下单失败!");
 			return result;
 		}
-		result.put("status", 200);
-		result.put("totalPrice", totalPrice(ss.getScenicBySid(sid).getScenicPrice(), Integer.valueOf(count)));
+		//下单服务 true就表示执行成功
+		if(os.putReserveOrder(sid, count)) {
+			result.put("status", 200);
+			result.put("totalPrice", totalPrice(ss.getScenicBySid(sid).getScenicPrice(), Integer.valueOf(count)));
+		}else {
+			result.put("status", 505);
+			result.put("msg", "创建订单发生异常!下单失败!");
+		}
 		return result;
 	}
 	

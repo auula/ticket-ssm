@@ -25,7 +25,9 @@ import com.java.ssm.ticket.utils.DateUtil;
 @RequestMapping("/user")
 public class UserController {
 	
-	
+	/**
+	 * session保存登录用户的key
+	 */
 	public static final String USER_LOGIN_KEY = "loginUserInfo";
 	
 	@Autowired
