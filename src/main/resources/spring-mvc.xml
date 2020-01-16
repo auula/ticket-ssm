@@ -30,6 +30,25 @@
 		location="/static/img/" />
 	<mvc:resources mapping="/static/fonts/**"
 		location="/static/fonts/" />
+		<!-- admin静态资源 -->
+	<mvc:resources mapping="/static/admin/css/**"
+		location="/static/admin/css/" />
+	<mvc:resources mapping="/static/admin/fonts/**"
+		location="/static/admin/fonts/" />
+	<mvc:resources mapping="/static/admin/images/**"
+		location="/static/admin/images/" />
+	<mvc:resources mapping="/static/admin/js/**"
+		location="/static/admin/js/" />
+	<mvc:resources mapping="/static/admin/lib/layui/**"
+		location="/static/admin/lib/layui/" />
+	<mvc:resources mapping="/static/admin/lib/layui/css/**"
+		location="/static/admin/lib/layui/css/" />
+	<mvc:resources mapping="/static/admin/lib/layui/font/**"
+		location="/static/admin/lib/layui/font/" />
+	<mvc:resources mapping="/static/admin/lib/layui/imgaes/**"
+		location="/static/admin/lib/layui/images/" />
+	<mvc:resources mapping="/static/admin/lib/layui/lay/**"
+		location="/static/admin/lib/layui/lay/" />								
 	
 	
 	<!-- mvc:interceptor 普通用户拦截器 -->
@@ -47,6 +66,8 @@
 			<mvc:exclude-mapping path="/user/reg" />
 			<mvc:exclude-mapping path="/static/**" />
 			<mvc:exclude-mapping path="/test/**" />
+			<!-- 不拦截系统管理员 -->
+			<mvc:exclude-mapping path="/admin/**" />
 			<bean class="com.java.ssm.ticket.interceptor.UserInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
