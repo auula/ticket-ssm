@@ -63,6 +63,10 @@ public class OrderService {
 		return od.findOrderByUid(ur.getUid());
 	}
 	
+	public List<Order> allOrders(){
+		return od.getAllOrder();
+	}
+	
 	// 计算总价
 	public BigDecimal totalPrice(BigDecimal price, Integer count) {
 		return price.multiply(BigDecimal.valueOf(count));

@@ -1,5 +1,7 @@
 package com.java.ssm.ticket.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -56,5 +58,9 @@ public class UserService {
 	 */
 	public User getUserByIdCard(String idcard){
 		return userDao.findUserByIdCard(idcard);
+	}
+	
+	public List<User> getAllUsers(){
+		return userDao.allUsers();
 	}
 }

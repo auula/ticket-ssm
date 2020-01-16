@@ -1,5 +1,7 @@
 package com.java.ssm.ticket.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -22,6 +24,10 @@ public interface UserDao {
 	 */
 	@Select("SELECT * FROM `ticket`.`user_table` WHERE uid = #{uid}")
 	User findUserById(long uid);
+	
+	
+	@Select("SELECT * FROM `ticket`.`user_table`")
+	List<User> allUsers();
 	
 	/**
 	 * 保存用户 useGeneratedKeys设置uid自增

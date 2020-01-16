@@ -79,8 +79,10 @@
 				//监听提交
 				form.on('submit(login)', function(data) {
 					$.post("<%=basePath%>/admin/form",data.field,function(result){
-						layer.msg(JSON.stringify(result), function() {
-							
+						layer.msg(JSON.stringify(result.msg), function() {
+							if(result.code == 200){
+								location.href = "<%=basePath%>/admin/main"
+							}
 						});
 					});
 					return false;
