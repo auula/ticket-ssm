@@ -63,7 +63,7 @@
 						lay-tips="订单管理">&#xe723;</i> <cite>订单管理</cite> <i
 						class="iconfont nav_right">&#xe697;</i></a></li>
 
-				<li><a href="javascript:;"> <i class="iconfont left-nav-li"
+				<li><a href="<%=basePath%>/admin/scenicList"> <i class="iconfont left-nav-li"
 						lay-tips="系统统计">&#xe6ce;</i> <cite>景区管理</cite> <i
 						class="iconfont nav_right">&#xe697;</i></a></li>
 

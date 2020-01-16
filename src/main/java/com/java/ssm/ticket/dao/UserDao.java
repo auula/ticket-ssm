@@ -2,11 +2,13 @@ package com.java.ssm.ticket.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.java.ssm.ticket.model.User;
 
@@ -39,6 +41,9 @@ public interface UserDao {
 	int saveUser(User user);
 	
 	
+	@Update("UPDATE `ticket`.`user_table` SET username = #{username},password = #{password},createTime = #{createTime},idcard = #{idcard} WHERE uid = #{uid}")
+	int UpdateUser(User u);
+	
 	/**
 	 * 通过idcard 身份证号查询 @Param绑定查询参数
 	 * @param idcard
@@ -46,5 +51,8 @@ public interface UserDao {
 	 */
 	@Select("SELECT * FROM `ticket`.`user_table` WHERE idcard = #{idcard}")
 	User findUserByIdCard(@Param(value = "idcard") String idcard);
+	
+	@Delete("DELETE FROM `ticket`.`user_table` WHERE uid = #{uid}")
+	int delOneUser(long uid);
 	
 }

@@ -60,7 +60,20 @@ public class UserService {
 		return userDao.findUserByIdCard(idcard);
 	}
 	
+	
+	public Boolean updateUser(User user) {
+		return (userDao.UpdateUser(user)>0);
+	}
+	
+	public User getUserByUid(String id){
+		return userDao.findUserById(Long.valueOf(id));
+	}
+	
 	public List<User> getAllUsers(){
 		return userDao.allUsers();
+	}
+	
+	public boolean delUserByUid(String uid) {
+		return (userDao.delOneUser(Long.valueOf(uid)) > 0);
 	}
 }

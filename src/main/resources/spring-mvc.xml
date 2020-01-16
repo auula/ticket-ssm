@@ -66,6 +66,7 @@
 			<mvc:exclude-mapping path="/user/reg" />
 			<mvc:exclude-mapping path="/static/**" />
 			<mvc:exclude-mapping path="/test/**" />
+			<mvc:exclude-mapping path="/Scenic/details/*" />
 			<!-- 不拦截系统管理员 -->
 			<mvc:exclude-mapping path="/admin/**" />
 			<bean class="com.java.ssm.ticket.interceptor.UserInterceptor"></bean>

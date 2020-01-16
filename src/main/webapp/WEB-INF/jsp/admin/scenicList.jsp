@@ -56,12 +56,12 @@
 	<div class="left-nav">
 		<div id="side-nav">
 			<ul id="nav">
-				<li><a href="<%=basePath%>/admin/userList"> <i class="iconfont left-nav-li"
-						lay-tips="会员管理">&#xe6b8;</i> <cite>会员管理</cite> <i
-						class="iconfont nav_right">&#xe697;</i></a></li>
-				<li><a href="<%=basePath%>/admin/orderList"> <i class="iconfont left-nav-li"
-						lay-tips="订单管理">&#xe723;</i> <cite>订单管理</cite> <i
-						class="iconfont nav_right">&#xe697;</i></a></li>
+				<li><a href="<%=basePath%>/admin/userList"> <i
+						class="iconfont left-nav-li" lay-tips="会员管理">&#xe6b8;</i> <cite>会员管理</cite>
+						<i class="iconfont nav_right">&#xe697;</i></a></li>
+				<li><a href="<%=basePath%>/admin/orderList"> <i
+						class="iconfont left-nav-li" lay-tips="订单管理">&#xe723;</i> <cite>订单管理</cite>
+						<i class="iconfont nav_right">&#xe697;</i></a></li>
 
 				<li><a href="<%=basePath%>/admin/scenicList"> <i class="iconfont left-nav-li"
 						lay-tips="系统统计">&#xe6ce;</i> <cite>景区管理</cite> <i
@@ -79,37 +79,47 @@
 		<div class="layui-fluid" style="height: 100%; overflow: auto;">
 			<div class="layui-row layui-col-space15">
 				<div class="layui-col-md12">
+
 					<div class="layui-card">
 						<div class="layui-card-body ">
+							<button class="layui-btn"
+								onclick="xadmin.open('添加用户','./order-add.html',800,600)">
+								<i class="layui-icon"></i>添加
+							</button>
 							<table class="layui-table layui-form">
 								<thead>
 									<tr>
-
-										<th width="70">数据表ID</th>
-										<th>身份证&账号</th>
+										<th>景区ID</th>
+										<th>景点名称</th>
 										<th>创建时间</th>
-										<th>用户姓名</th>
+										<th>单人价格</th>
+										<th>景点热点</th>
+										<th>宣传图片</th>
 										<th width="250">操作</th>
 								</thead>
 								<tbody class="x-cate">
 									<tr cate-id='1' fid='0'>
-									<c:forEach items="${us}" var="item">
-										<td>${item.getUid()}</td>
-										<td>${item.getIdcard()}</td>
+									<c:forEach items="${ss}" var="item">
+										<td>${item.getSid()}</td>
+										<td>${item.getScenicName()}</td>
 										<td>${item.getCreateTime()}</td>
-										<td>${item.getUsername()}</td>
+										<td>${item.getScenicPrice()}</td>
+										<td>${item.getScenicStar()}</td>
+										<td><button class="layui-btn layui-btn layui-btn-xs"
+												onclick="xadmin.open('宣传图','${item.getScenicPic()}')">
+												<i class="layui-icon">&#xe642;</i>查看大图
+											</button></td>
 										<td class="td-manage">
-											<button class="layui-btn layui-btn layui-btn-xs"
-												onclick="xadmin.open('编辑','<%=basePath%>/admin/editUser?uid=${uid=item.getUid()}',460,310)">
-												<i class="layui-icon">&#xe642;</i>编辑
-											</button>
+											
+											<button class="layui-btn layui-btn-warm layui-btn-xs" onclick="javascript:window.location.href='<%=basePath%>/Scenic/details/${item.getSid()}'"><i class="layui-icon"></i>查看详情</button>
 											<button class="layui-btn-danger layui-btn layui-btn-xs"
-												onclick="member_del(this,'${item.getUid()}')" href="javascript:;">
+												onclick="member_del(this,'要删除的id')" href="javascript:;">
 												<i class="layui-icon">&#xe640;</i>删除
 											</button>
 										</td>
 									</tr>
 									</c:forEach>
+									
 								</tbody>
 							</table>
 						</div>
@@ -141,16 +151,10 @@
 			layer.confirm('确认要删除吗？', function(index) {
 				//发异步删除数据
 				$(obj).parents("tr").remove();
-				$.post("<%=basePath%>/admin/delUserform", {uid:id},function(result) {
-					if (result.code == 200) {
-						layer.msg('已删除!', {
-							icon : 1,
-							time : 1000
-						});
-					}
+				layer.msg('已删除!', {
+					icon : 1,
+					time : 1000
 				});
-				
-				
 			});
 		}
 
