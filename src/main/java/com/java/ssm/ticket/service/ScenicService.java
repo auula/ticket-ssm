@@ -37,6 +37,10 @@ public class ScenicService {
 	
 	
 	
+	public Boolean saveScenic(Scenic sc) {
+		return (sd.saveScenic(sc) > 0);
+	}
+	
 	/**
 	 * star热门次数自加
 	 * @param sid

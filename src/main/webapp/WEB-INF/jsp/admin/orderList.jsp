@@ -82,10 +82,7 @@
 
 					<div class="layui-card">
 						<div class="layui-card-body ">
-							<button class="layui-btn"
-								onclick="xadmin.open('添加用户','./order-add.html',800,600)">
-								<i class="layui-icon"></i>添加
-							</button>
+							
 							<table class="layui-table layui-form">
 								<thead>
 									<tr>
@@ -107,7 +104,7 @@
 										<td class="td-manage">
 		
 											<button class="layui-btn-danger layui-btn layui-btn-xs"
-												onclick="member_del(this,'要删除的id')" href="javascript:;">
+												onclick="member_del(this,'${item.getOid()}')" ">
 												<i class="layui-icon">&#xe640;</i>删除
 											</button>
 										</td>
@@ -140,54 +137,22 @@
 
 		});
 
-		/*用户-删除*/
+		/*订单-删除*/
 		function member_del(obj, id) {
 			layer.confirm('确认要删除吗？', function(index) {
 				//发异步删除数据
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!', {
-					icon : 1,
-					time : 1000
+				$.post("<%=basePath%>/admin/delOrderform", {oid:id},function(result) {
+					if (result.code == 200) {
+						$(obj).parents("tr").remove();
+						layer.msg('已删除!', {
+							icon : 1,
+							time : 1000
+						});
+					}
 				});
 			});
 		}
 
-		// 分类展开收起的分类的逻辑
-		// 
-		$(function() {
-			$("tbody.x-cate tr[fid!='0']").hide();
-			// 栏目多级显示效果
-			$('.x-show').click(
-					function() {
-						if ($(this).attr('status') == 'true') {
-							$(this).html('&#xe625;');
-							$(this).attr('status', 'false');
-							cateId = $(this).parents('tr').attr('cate-id');
-							$("tbody tr[fid=" + cateId + "]").show();
-						} else {
-							cateIds = [];
-							$(this).html('&#xe623;');
-							$(this).attr('status', 'true');
-							cateId = $(this).parents('tr').attr('cate-id');
-							getCateId(cateId);
-							for ( var i in cateIds) {
-								$("tbody tr[cate-id=" + cateIds[i] + "]")
-										.hide().find('.x-show')
-										.html('&#xe623;')
-										.attr('status', 'true');
-							}
-						}
-					})
-		})
-
-		var cateIds = [];
-		function getCateId(cateId) {
-			$("tbody tr[fid=" + cateId + "]").each(function(index, el) {
-				id = $(el).attr('cate-id');
-				cateIds.push(id);
-				getCateId(id);
-			});
-		}
 	</script>
 </body>
 

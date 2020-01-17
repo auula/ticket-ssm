@@ -2,6 +2,7 @@ package com.java.ssm.ticket.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -33,4 +34,7 @@ public interface OrderDao {
 
 	@Select("SELECT * FROM `ticket`.`order_table` WHERE order_uid = #{uid}")
 	List<Order> findOrderByUid(@Param("uid") long uid);
+	
+	@Delete("DELETE FROM `ticket`.`order_table` WHERE oid = #{oid}")
+	int delOrderByOid(long oid);
 }

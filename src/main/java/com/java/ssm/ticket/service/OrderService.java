@@ -67,6 +67,10 @@ public class OrderService {
 		return od.getAllOrder();
 	}
 	
+	public boolean delOneOrder(String oid) {
+		return (od.delOrderByOid(Long.valueOf(oid))>0);
+	}
+	
 	// 计算总价
 	public BigDecimal totalPrice(BigDecimal price, Integer count) {
 		return price.multiply(BigDecimal.valueOf(count));

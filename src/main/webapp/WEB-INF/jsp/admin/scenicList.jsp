@@ -83,7 +83,7 @@
 					<div class="layui-card">
 						<div class="layui-card-body ">
 							<button class="layui-btn"
-								onclick="xadmin.open('添加用户','./order-add.html',800,600)">
+								onclick="xadmin.open('添加用户','<%=basePath%>/admin/addScenic',500,500)">
 								<i class="layui-icon"></i>添加
 							</button>
 							<table class="layui-table layui-form">
@@ -158,42 +158,7 @@
 			});
 		}
 
-		// 分类展开收起的分类的逻辑
-		// 
-		$(function() {
-			$("tbody.x-cate tr[fid!='0']").hide();
-			// 栏目多级显示效果
-			$('.x-show').click(
-					function() {
-						if ($(this).attr('status') == 'true') {
-							$(this).html('&#xe625;');
-							$(this).attr('status', 'false');
-							cateId = $(this).parents('tr').attr('cate-id');
-							$("tbody tr[fid=" + cateId + "]").show();
-						} else {
-							cateIds = [];
-							$(this).html('&#xe623;');
-							$(this).attr('status', 'true');
-							cateId = $(this).parents('tr').attr('cate-id');
-							getCateId(cateId);
-							for ( var i in cateIds) {
-								$("tbody tr[cate-id=" + cateIds[i] + "]")
-										.hide().find('.x-show')
-										.html('&#xe623;')
-										.attr('status', 'true');
-							}
-						}
-					})
-		})
-
-		var cateIds = [];
-		function getCateId(cateId) {
-			$("tbody tr[fid=" + cateId + "]").each(function(index, el) {
-				id = $(el).attr('cate-id');
-				cateIds.push(id);
-				getCateId(id);
-			});
-		}
+		
 	</script>
 </body>
 
