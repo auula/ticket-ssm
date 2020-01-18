@@ -36,6 +36,9 @@ public class ScenicService {
 	}
 	
 	
+	public Boolean deleteScenicById(String sid) {
+		return (sd.deleteScenicById(Long.valueOf(sid)) >0 );
+	}
 	
 	public Boolean saveScenic(Scenic sc) {
 		return (sd.saveScenic(sc) > 0);

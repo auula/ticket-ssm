@@ -34,20 +34,15 @@
 		</div>
 
 		<ul class="layui-nav right" lay-filter="">
-			<li class="layui-nav-item"><a href="javascript:;">admin</a>
+			<li class="layui-nav-item"><a href="javascript:;">${sessionScope.LOGIN_ADMIN.getUsername()}</a>
 				<dl class="layui-nav-child">
 					<!-- 二级菜单 -->
+					
 					<dd>
-						<a onclick="xadmin.open('个人信息','http://www.baidu.com')">个人信息</a>
-					</dd>
-					<dd>
-						<a onclick="xadmin.open('切换帐号','http://www.baidu.com')">切换帐号</a>
-					</dd>
-					<dd>
-						<a href="./login.html">退出</a>
+						<a href="<%=basePath%>/admin/logout">退出</a>
 					</dd>
 				</dl></li>
-			<li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
+			<li class="layui-nav-item to-index"><a href="<%=basePath%>">前台首页</a></li>
 		</ul>
 	</div>
 	<!-- 顶部结束 -->

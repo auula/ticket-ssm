@@ -31,6 +31,7 @@ public class AdminService {
 		Admin ainfo = ad.findAdminByUsername(admin.getUsername());
 		// 如果表单的密码和数据库通过管理员账号查询带密码一致就表明账号和密码正确
 		if (admin.getPassword().equals(ainfo.getPassword())) {
+			request.getSession().setAttribute("LOGIN_ADMIN", ainfo);
 			return true;
 		}
 		return false;

@@ -2,6 +2,7 @@ package com.java.ssm.ticket.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -62,4 +63,7 @@ public interface ScenicDao {
 	 */
 	@Select("SELECT * FROM `scenic_table` WHERE scenic_name LIKE '%${Key}%'")
 	List<Scenic> searchKeyScenic(@Param("Key") String Key);
+	
+	@Delete("DELETE FROM `ticket`.`scenic_table` WHERE sid = #{sid}")
+	int deleteScenicById(long sid);
 }

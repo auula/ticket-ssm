@@ -96,6 +96,11 @@ public class AdminController {
 		ui.addAttribute("uid", uid);
 		return "admin/editUser";
 	}
+	@GetMapping("/logout")
+	public String logout() {
+		req.getSession().removeAttribute("LOGIN_ADMIN");
+		return "redirect:/admin/login";
+	}
 
 	@ResponseBody
 	@PostMapping("/editUserform")
@@ -139,6 +144,26 @@ public class AdminController {
 		return rs;
 	}
 
+	@ResponseBody
+	@PostMapping("/delScenicform")
+	public Map<String, Object> delScenicform(String sid) {
+		Map<String, Object> rs = new HashMap<String, Object>();
+		if (sid.isEmpty() || sid == null) {
+			rs.put("code", "500");
+			rs.put("msg", "参数错误!");
+			return rs;
+		}
+
+		if (ss.deleteScenicById(sid)) {
+			rs.put("code", 200);
+			rs.put("msg", "成功~");
+			return rs;
+		}
+		rs.put("code", 500);
+		rs.put("msg", "服务器错误!");
+		return rs;
+	}
+	
 	@ResponseBody
 	@PostMapping("/delOrderform")
 	public Map<String, Object> delOrderForm(String oid) {

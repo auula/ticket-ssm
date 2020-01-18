@@ -34,20 +34,14 @@
 		</div>
 
 		<ul class="layui-nav right" lay-filter="">
-			<li class="layui-nav-item"><a href="javascript:;">admin</a>
+			<li class="layui-nav-item"><a href="javascript:;">${sessionScope.LOGIN_ADMIN.getUsername()}</a>
 				<dl class="layui-nav-child">
 					<!-- 二级菜单 -->
 					<dd>
-						<a onclick="xadmin.open('个人信息','http://www.baidu.com')">个人信息</a>
-					</dd>
-					<dd>
-						<a onclick="xadmin.open('切换帐号','http://www.baidu.com')">切换帐号</a>
-					</dd>
-					<dd>
-						<a href="./login.html">退出</a>
+						<a href="<%=basePath%>/admin/logout">退出</a>
 					</dd>
 				</dl></li>
-			<li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
+			<li class="layui-nav-item to-index"><a href="<%=basePath%>">前台首页</a></li>
 		</ul>
 	</div>
 	<!-- 顶部结束 -->
@@ -63,9 +57,9 @@
 						class="iconfont left-nav-li" lay-tips="订单管理">&#xe723;</i> <cite>订单管理</cite>
 						<i class="iconfont nav_right">&#xe697;</i></a></li>
 
-				<li><a href="<%=basePath%>/admin/scenicList"> <i class="iconfont left-nav-li"
-						lay-tips="系统统计">&#xe6ce;</i> <cite>景区管理</cite> <i
-						class="iconfont nav_right">&#xe697;</i></a></li>
+				<li><a href="<%=basePath%>/admin/scenicList"> <i
+						class="iconfont left-nav-li" lay-tips="系统统计">&#xe6ce;</i> <cite>景区管理</cite>
+						<i class="iconfont nav_right">&#xe697;</i></a></li>
 
 
 			</ul>
@@ -99,27 +93,30 @@
 								</thead>
 								<tbody class="x-cate">
 									<tr cate-id='1' fid='0'>
-									<c:forEach items="${ss}" var="item">
-										<td>${item.getSid()}</td>
-										<td>${item.getScenicName()}</td>
-										<td>${item.getCreateTime()}</td>
-										<td>${item.getScenicPrice()}</td>
-										<td>${item.getScenicStar()}</td>
-										<td><button class="layui-btn layui-btn layui-btn-xs"
-												onclick="xadmin.open('宣传图','${item.getScenicPic()}')">
-												<i class="layui-icon">&#xe642;</i>查看大图
-											</button></td>
-										<td class="td-manage">
-											
-											<button class="layui-btn layui-btn-warm layui-btn-xs" onclick="javascript:window.location.href='<%=basePath%>/Scenic/details/${item.getSid()}'"><i class="layui-icon"></i>查看详情</button>
-											<button class="layui-btn-danger layui-btn layui-btn-xs"
-												onclick="member_del(this,'要删除的id')" href="javascript:;">
-												<i class="layui-icon">&#xe640;</i>删除
-											</button>
-										</td>
+										<c:forEach items="${ss}" var="item">
+											<td>${item.getSid()}</td>
+											<td>${item.getScenicName()}</td>
+											<td>${item.getCreateTime()}</td>
+											<td>${item.getScenicPrice()}</td>
+											<td>${item.getScenicStar()}</td>
+											<td><button class="layui-btn layui-btn layui-btn-xs"
+													onclick="xadmin.open('宣传图','${item.getScenicPic()}')">
+													<i class="layui-icon">&#xe642;</i>查看大图
+												</button></td>
+											<td class="td-manage">
+
+												<button class="layui-btn layui-btn-warm layui-btn-xs"
+													onclick="javascript:window.location.href='<%=basePath%>/Scenic/details/${item.getSid()}'">
+													<i class="layui-icon"></i>查看详情
+												</button>
+												<button class="layui-btn-danger layui-btn layui-btn-xs"
+													onclick="member_del(this,'${item.getSid()}') ">
+													<i class="layui-icon">&#xe640;</i>删除
+												</button>
+											</td>
 									</tr>
 									</c:forEach>
-									
+
 								</tbody>
 							</table>
 						</div>
@@ -150,15 +147,19 @@
 		function member_del(obj, id) {
 			layer.confirm('确认要删除吗？', function(index) {
 				//发异步删除数据
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!', {
-					icon : 1,
-					time : 1000
+				$.post("<%=basePath%>/admin/delScenicform",{sid:id},function(result) {
+					if (result.code == 200) {
+						$(obj).parents("tr").remove();
+						layer.msg('已删除!', {
+							icon : 1,
+							time : 1000
+						});
+					}
+
 				});
+
 			});
 		}
-
-		
 	</script>
 </body>
 
