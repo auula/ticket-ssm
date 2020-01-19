@@ -45,7 +45,7 @@ public class UserController {
 
 		// 开关
 		boolean flag = true;
-		if (user.getUsername() == null || user.getUsername().isBlank()) {
+		if (user.getUsername() == null) {
 			md.addAttribute("usermsg", "请填写你的名字!");
 			flag = false;
 		}

@@ -27,7 +27,7 @@ public class SearchConteroller {
 	 */
 	@GetMapping("/search")
 	public String Scarch(@RequestParam String key,Model md) {
-		if (key == null || key.isBlank()) {
+		if (key == null) {
 			key = "鼎";// 如果是空就默认值
 		}
 		List<Scenic> sl = ss.searchKey(key);

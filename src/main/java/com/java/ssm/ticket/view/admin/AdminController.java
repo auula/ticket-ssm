@@ -106,7 +106,7 @@ public class AdminController {
 	@PostMapping("/editUserform")
 	public Map<String, Object> userForm(String uid, String username, String password) {
 		Map<String, Object> rs = new HashMap<String, Object>();
-		if (username.isBlank() || password.isEmpty() || uid == null) {
+		if (username ==null || password == null || uid == null) {
 			rs.put("code", "500");
 			rs.put("msg", "参数错误!");
 			return rs;
@@ -128,7 +128,7 @@ public class AdminController {
 	@PostMapping("/delUserform")
 	public Map<String, Object> delUserForm(String uid) {
 		Map<String, Object> rs = new HashMap<String, Object>();
-		if (uid.isEmpty() || uid == null) {
+		if ( uid == null) {
 			rs.put("code", "500");
 			rs.put("msg", "参数错误!");
 			return rs;
@@ -148,7 +148,7 @@ public class AdminController {
 	@PostMapping("/delScenicform")
 	public Map<String, Object> delScenicform(String sid) {
 		Map<String, Object> rs = new HashMap<String, Object>();
-		if (sid.isEmpty() || sid == null) {
+		if (sid == null) {
 			rs.put("code", "500");
 			rs.put("msg", "参数错误!");
 			return rs;
@@ -168,7 +168,7 @@ public class AdminController {
 	@PostMapping("/delOrderform")
 	public Map<String, Object> delOrderForm(String oid) {
 		Map<String, Object> rs = new HashMap<String, Object>();
-		if (oid.isEmpty() || oid == null) {
+		if (oid == null) {
 			rs.put("code", "500");
 			rs.put("msg", "参数错误!");
 			return rs;
@@ -211,7 +211,7 @@ public class AdminController {
 			String sc_price,String sc_pic) {
 		Map<String, Object> rs = new HashMap<String, Object>();
 		System.out.println(sc_name + sc_address + sc_desc + sc_name + sc_price);
-		if (sc_name.isBlank() || sc_address.isBlank() || sc_desc.isBlank() || sc_name.isBlank() || sc_price.isBlank()) {
+		if (sc_name == null || sc_address ==null || sc_desc==null || sc_name==null || sc_price==null) {
 			rs.put("code", "500");
 			rs.put("msg", "验证码错误!");
 			return rs;

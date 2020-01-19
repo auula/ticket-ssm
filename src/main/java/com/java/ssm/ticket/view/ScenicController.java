@@ -28,7 +28,7 @@ public class ScenicController {
 	@GetMapping("/details/{id}")
 	public String details(@PathVariable String id,Model ui) {
 		//防止id为空 并且 如果空就负默认值为1
-		if (id == null || id.isBlank()) {
+		if (id == null) {
 			id = String.valueOf(1);
 		}
 		ss.addOneStar(id);

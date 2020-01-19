@@ -40,8 +40,7 @@
 			</div>
 		</nav>
 		<nav class="my-2 my-md-0 mr-md-3">
-			<a class="p-2 text-dark" href="<%=basePath%>">首页</a> <a
-				class="p-2 text-dark" href="#">最新景点</a>
+			<a class="p-2 text-dark" href="<%=basePath%>">首页</a> 
 		</nav>
 		<c:if test="${sessionScope.loginUserInfo == null}">
 			<nav class="my-2 my-md-0 mr-md-3">

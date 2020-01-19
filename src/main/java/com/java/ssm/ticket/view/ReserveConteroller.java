@@ -35,7 +35,7 @@ public class ReserveConteroller {
 	 */
 	@GetMapping("/reserve/{sid}")
 	public String reserve(@PathVariable String sid,Model md) {
-		if(sid.isEmpty() || sid == null) {
+		if(sid == null) {
 			//空的话就初始化
 			sid = "1";
 		}
@@ -51,7 +51,7 @@ public class ReserveConteroller {
 	@PostMapping("/reserve/order")
 	public Map<String, Object> toReserve(@RequestParam String sid,@RequestParam String count) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		if(sid.isEmpty() || count.isEmpty()) {
+		if(sid == null || count==null) {
 			result.put("status", 500);
 			result.put("msg", "参数错误!下单失败!");
 			return result;

@@ -13,7 +13,7 @@
 target/
 
 #properties file
-*.properties
+# *.properties
 *.project
 .classpath
 
