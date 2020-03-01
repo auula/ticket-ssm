@@ -49,6 +49,7 @@
 				<div class="layui-form-item">
 					<label for="L_repass" class="layui-form-label"></label>
 					<button class="layui-btn" lay-filter="add" lay-submit="">修改</button>
+					<span style="color:red;">提示: 修改之后请手动刷新页面获取最新数据！</span>
 				</div>
 			</form>
 		</div>

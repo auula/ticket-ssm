@@ -75,13 +75,14 @@
 				</div>
 				<div class="layui-form-item">
 					<button class="layui-btn" lay-submit="" lay-filter="add">增加</button>
+					<span style="color:red;">提示: 添加成功之后请手动刷新页面获取最新数据！</span>
 				</div>
 			</form>
 		</div>
 	</div>
 	<script>
 		layui.use([ 'form', 'layer', 'upload' ], function() {
-			var picUrl;
+			var picUrl; //存储上传成功之后服务器返回的图片路径
 			$ = layui.jquery;
 			var form = layui.form, layer = layui.layer;
 			var upload = layui.upload;
@@ -102,11 +103,17 @@
 						layer.alert("增加成功", {
 							icon : 6
 						}, function() {
+							layer.open({
+								title : '提示',
+								content : '添加成功！请手动刷新页面获取最新数据！'
+							});
 							// 获得frame索引
 							var index = parent.layer.getFrameIndex(window.name);
 							//关闭当前frame
 							parent.layer.close(index);
 						});
+						return true;
+					}else{
 						return false;
 					}
 				});

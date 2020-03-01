@@ -54,7 +54,7 @@ public class AdminController {
 
 	@Autowired
 	HttpServletRequest req;
-
+	// 这些都是返回jsp视图
 	@GetMapping("/login")
 	public String admin() {
 		return "admin/login";
@@ -87,7 +87,7 @@ public class AdminController {
 	public String addScenic() {
 		return "admin/addScenic";
 	}
-
+	//返回编辑用户页面
 	@GetMapping("/editUser")
 	public String editUser(String uid, Model ui) {
 		/*
@@ -96,12 +96,13 @@ public class AdminController {
 		ui.addAttribute("uid", uid);
 		return "admin/editUser";
 	}
+	//用户退出登录 从Session Remove的用户
 	@GetMapping("/logout")
 	public String logout() {
 		req.getSession().removeAttribute("LOGIN_ADMIN");
 		return "redirect:/admin/login";
 	}
-
+	//编辑用户请求
 	@ResponseBody
 	@PostMapping("/editUserform")
 	public Map<String, Object> userForm(String uid, String username, String password) {
@@ -123,7 +124,7 @@ public class AdminController {
 		rs.put("msg", "服务器错误!");
 		return rs;
 	}
-
+	//删除用户请求
 	@ResponseBody
 	@PostMapping("/delUserform")
 	public Map<String, Object> delUserForm(String uid) {
@@ -143,7 +144,7 @@ public class AdminController {
 		rs.put("msg", "服务器错误!");
 		return rs;
 	}
-
+	//删除景点
 	@ResponseBody
 	@PostMapping("/delScenicform")
 	public Map<String, Object> delScenicform(String sid) {
@@ -163,7 +164,7 @@ public class AdminController {
 		rs.put("msg", "服务器错误!");
 		return rs;
 	}
-	
+	//删除订单
 	@ResponseBody
 	@PostMapping("/delOrderform")
 	public Map<String, Object> delOrderForm(String oid) {
@@ -183,7 +184,7 @@ public class AdminController {
 		rs.put("msg", "服务器错误!");
 		return rs;
 	}
-
+	//登录表单验证
 	@ResponseBody
 	@PostMapping("/form")
 	public Map<String, Object> form(String code, Admin admin) {
@@ -204,7 +205,7 @@ public class AdminController {
 		rs.put("msg", "账号或者密码错误!");
 		return rs;
 	}
-
+	//添加景点请求
 	@ResponseBody
 	@PostMapping("/addScform")
 	public Map<String, Object> addScform(String sc_name,String sc_address, String sc_desc,
@@ -233,7 +234,7 @@ public class AdminController {
 		rs.put("msg", "服务器错误!");
 		return rs;
 	}
-
+	//景点图片上传接口
 	@ResponseBody
 	@PostMapping("/pic_upload")
 	public Map<String, Object> pic_upload(@RequestParam MultipartFile file) {

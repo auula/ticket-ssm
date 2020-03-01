@@ -79,7 +79,7 @@
 							<button class="layui-btn"
 								onclick="xadmin.open('添加用户','<%=basePath%>/admin/addScenic',500,500)">
 								<i class="layui-icon"></i>添加
-							</button>
+							</button> <span style="color:red;">提示: 添加成功之后请手动刷新页面获取最新数据！</span>
 							<table class="layui-table layui-form">
 								<thead>
 									<tr>
