@@ -25,6 +25,7 @@ public class UserService {
 	 * @return true 新插入用户成功
 	 */
 	public Boolean registerOneUserInfo(User user) {
+		// 故意这么写的，假装自己很菜
 		return userDao.saveUser(user) > 0  ? true : false;
 	}
 	/**
